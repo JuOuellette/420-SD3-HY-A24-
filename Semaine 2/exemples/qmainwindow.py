@@ -24,6 +24,12 @@ class FenetrePrincipale(QMainWindow):
         barre_outils.addWidget(bouton_test)
         self.addToolBar(barre_outils)
 
+        barre_outils_2 = QToolBar("barre d'outils 2 ")
+        barre_outils_2.setIconSize(QSize(16, 16))
+        bouton_outil_2 = QPushButton("outils")
+        barre_outils_2.addWidget(bouton_outil_2)
+        self.addToolBar(barre_outils_2)
+
         self.barre_statut = QStatusBar(self)
         self.barre_statut.setStatusTip("cliquer un bouton")
         self.setStatusBar(self.barre_statut)
