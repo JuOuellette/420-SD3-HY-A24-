@@ -2,15 +2,12 @@ import sys
 
 from PySide6.QtCore import QSize
 from PySide6.QtWidgets import QMainWindow, QApplication, QToolBar, QStatusBar, QPushButton, QVBoxLayout, QWidget, QDialog
-from PySide6.QtGui import QAction
 
 class Fenetre(QMainWindow):
     def __init__(self):
         super().__init__()
 
         #titre
-        self.bouton = None
-        self.dialogue = None
         self.setWindowTitle("Mon application")
 
         #statut
