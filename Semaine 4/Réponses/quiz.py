@@ -33,7 +33,7 @@ class Quiz(QFrame):
         disposition.addLayout(disposition_question1)
 
         # Question 2
-        question2 = QLabel("Lesquelles de ces aliments sont des fruits?")
+        question2 = QLabel("Lesquels de ces aliments sont des fruits?")
         disposition_question2 = QVBoxLayout()
         disposition_question2.addWidget(question2)
         disposition_reponses2 = QHBoxLayout()
@@ -45,6 +45,7 @@ class Quiz(QFrame):
         self.button_group2.addButton(self.checkbox2)
         self.button_group2.addButton(self.checkbox3)
         self.button_group2.buttonClicked.connect(self.question2_repondue)
+        self.button_group2.setExclusive(False)
         disposition_reponses2.addWidget(self.checkbox1)
         disposition_reponses2.addWidget(self.checkbox2)
         disposition_reponses2.addWidget(self.checkbox3)
@@ -153,7 +154,6 @@ class Quiz(QFrame):
             resultats += "Question 5: Incorrect\n"
         dialog.setText(resultats)
         dialog.exec()
-
 
 
 app = QApplication()
