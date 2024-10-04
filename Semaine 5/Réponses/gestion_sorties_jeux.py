@@ -3,6 +3,7 @@ from PySide6.QtWidgets import QMainWindow, QApplication, QPushButton, QLabel, QL
     QGridLayout, QHBoxLayout, QSpacerItem
 from jeux_modele import JeuxModele, JeuxSortie
 
+
 # La vue est la représentation graphique de l'application
 class GestionnaireJeuVue(QMainWindow):
     def __init__(self):
