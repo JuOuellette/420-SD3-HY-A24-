@@ -1,22 +1,16 @@
-from PySide6.QtWidgets import QMainWindow, QLabel, QHBoxLayout, QWidget
-
+from PySide6.QtWidgets import QMainWindow, QLabel, QHBoxLayout, QWidget, QApplication, QPushButton
+from computer_model import Jeux_Sorties, Modele
 import csv
-
-class Modele:
-    def __init__(self):
-        super().__init__()
-
-    def read_file(self):
-        with open("computer_games.csv", "r") as csv_file:
-            csv_dict_reader = csv.DictReader(csv_file)
-            for i in csv_dict_reader:
-                print(f'{i["Name"]} , {i["Developer"]} , {i["Producer"]} , {i["Genre"]}) , {i["Operating System"]} , {i["Date Released"]})
-
-        #changer pour pouvoir naviguer d'une ligne à l'autre
 
 class Vue(QMainWindow):
     def __init__(self):
         super().__init__()
+
+        self.modele = Modele()
+        self.controleur = Gestion_Controleur(self.modele)
+
+        bouton = QPushButton("test")
+        bouton.clicked.connect(self.controleur.bouton_enregistrer_click())
 
         self.SetWindowTitle = "Computer Games"
         self.disposition = QHBoxLayout()
@@ -40,3 +34,20 @@ class Vue(QMainWindow):
         self.disposition.addLayout(disposition_libelle)
         return libelle_valeur
 
+    def creer_widget_valeur(self):
+        pass
+
+class Gestion_Controleur():
+    def __init__(self, modele: Modele):
+        pass
+
+    def bouton_enregistrer_click(self):
+        pass
+
+
+
+
+app = QApplication()
+vue = Vue()
+vue.show()
+app.exec()

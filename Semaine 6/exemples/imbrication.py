@@ -30,7 +30,7 @@ class FenetrePrincipale(QMainWindow):
         disposition_grid.addLayout(disposition_vbox, 1, 0, 3, 3)
 
         self.setCentralWidget(widget_central)
-
+        # code avec un hbox et un vbox
 
 app = QApplication()
 fp = FenetrePrincipale()
