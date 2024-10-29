@@ -15,6 +15,7 @@ class BitmapAnimationAuto(QMainWindow):
         widget_central = QWidget()
         widget_central.setLayout(self.disposition)
 
+        # choisir les images à mettre dans le programme
         self.barre_outils = self.addToolBar("Barre d'outils")
         self.barre_outils.setIconSize(QSize(32, 32))
         self.bouton_ouvrir_fichier = QPushButton()
@@ -37,6 +38,7 @@ class BitmapAnimationAuto(QMainWindow):
         self.image_animee = None
         self.timer = QTimer()
         self.timer.timeout.connect(self.animer)
+        #chaque fois bout du temps, applique self. Animer
 
         self.setCentralWidget(widget_central)
 
@@ -49,6 +51,7 @@ class BitmapAnimationAuto(QMainWindow):
             self.timer.stop()
         else:
             self.timer.start(1000 / 24)
+            # 24 images par seconde
 
     def animer(self):
         self.image_animee.dessiner(self.index_image)
@@ -56,9 +59,12 @@ class BitmapAnimationAuto(QMainWindow):
 
     def ouvrir_fichier(self):
         self.nom_fichier = QFileDialog.getOpenFileName(self, "Ouvrir Image", "./images", "Images (*.png *.jpg)")
+        # répertoire qui ouvre quand qqun veut choisir image. ca filtre pour donner juste les png et les jpg
         prefixe_image = self.nom_fichier[0].split(".")[0]
         suffixe_image = self.nom_fichier[0].split(".")[-1]
         nombre_images = len(glob.glob(os.path.join("./images", prefixe_image + "_*." + suffixe_image)))
+        # glob: expression régulière: glob module finds all the pathnames matching a specified pattern according to the rules used by the Unix shell
+        # * everything de ce caractère
 
         self.image_animee = ImageAnimee(prefixe_image, suffixe_image, nombre_images, self)
         self.image_animee.dessiner(self.index_image)
@@ -72,6 +78,9 @@ class ImageAnimee():
         self.nb_images = nb_images
         self.vue = vue
         self.liste_images = []
+        # AU LIEU D'UNE LISTE ÇA AURAIT PU ÊTRE UNE FILE. DEQUEUE
+        # AVANTAGES PAS BESOIN D'INDEX
+        # DÉSAVANTAGES: DESSINER INDEX(INT) le programme crash si run trop longtemps ((liste ou file)
         for i in range(0, nb_images):
             self.liste_images.append(QPixmap(self.prefixe_image + "_" + str(i) + "." + self.suffixe_image))
 
@@ -83,6 +92,7 @@ class ImageAnimee():
         painter = QPainter(canevas)
         painter.drawPixmap(25, 25, self.pixmap(index))
         painter.end()
+        # don't forget to end
         self.vue.etiquette.setPixmap(canevas)
 
 

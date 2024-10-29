@@ -20,6 +20,7 @@ class BitmapAnimation(QMainWindow):
         self.disposition.addWidget(self.etiquette)
         self.disposition.addWidget(self.bouton_avancer)
 
+        # savoir où on est rendu laquelle à afficher, index de l'image
         self.index_image = 0
 
         self.image_animee = ImageAnimee("./images/chat", 8, self)
@@ -41,8 +42,11 @@ class ImageAnimee():
         for i in range(0, nb_images):
             self.liste_images.append(QPixmap(self.prefixe_image + "_" + str(i) + ".png"))
 
+        # Côté performance, on a une classe image pour avoir toutes les images loadés à l'avance. au lieu de load à chaque fois
+
     def pixmap(self, index: int):
         return self.liste_images[index % self.nb_images]
+    # retourne bon pixmap selon l'indice donné
 
     def dessiner(self, index: int):
         canevas = self.vue.etiquette.pixmap()
