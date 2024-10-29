@@ -35,9 +35,8 @@ class Fenetre(QWidget):
         self.animation2.setEasingCurve(QEasingCurve.Type.OutCurve)
         # how it grows
 
-        # group so does the two animation at the same time
-        self.anim_group = QParallelAnimationGroup()
-        # self.anim_group = QSequentialAnimationGroup()
+        # self.anim_group = QParallelAnimationGroup()
+        self.anim_group = QSequentialAnimationGroup()
         self.anim_group.addAnimation(self.animation)
         self.anim_group.addAnimation(self.animation2)
         self.anim_group.start()
