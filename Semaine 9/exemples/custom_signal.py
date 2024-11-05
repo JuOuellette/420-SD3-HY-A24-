@@ -31,6 +31,7 @@ class Fenetre(QMainWindow):
 # Un widget personnalisé qui va envoyer le signal personnalisé lorsque le setText() est appelé
 class MonQLineEdit(QLineEdit):
     # défini notre signal avec sa signature
+    # constructeur de signal
     monSignal = Signal(str, int)
     def __init__(self):
         super().__init__()
