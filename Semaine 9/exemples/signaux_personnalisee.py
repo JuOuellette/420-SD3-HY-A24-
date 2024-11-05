@@ -9,10 +9,11 @@ class Fenetre(QMainWindow):
         widget_central = QWidget()
         self.setCentralWidget(widget_central)
         disposition = QVBoxLayout()
+
         self.etiquette = QLabel("")
         self.mon_line_edit = MonQLineEdit()
         # Connecte le signal personalisé à une méthode
-        self.mon_line_edit.monSignal.connect(self.monSignal_declenche)
+        self.mon_line_edit.mon_signal.connect(self.mon_signal_declenche)
         bouton_test = QPushButton("Test")
         bouton_test.clicked.connect(self.bouton_clicked)
         disposition.addWidget(self.etiquette)
@@ -21,7 +22,7 @@ class Fenetre(QMainWindow):
         widget_central.setLayout(disposition)
 
     # Porter attention à la signature de la méthode
-    def monSignal_declenche(self, nouveau_texte: str, longueur_texte: int):
+    def mon_signal_declenche(self, nouveau_texte: str, longueur_texte: int):
         self.etiquette.setText(nouveau_texte + " " + str(longueur_texte))
 
     # Utiliser un bouton pour appeler le setText() du MonQLineEdit qui dclenchera le signal "monSignal"
