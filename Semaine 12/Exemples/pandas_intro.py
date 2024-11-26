@@ -44,7 +44,7 @@ print(df.describe())
 print("Filtrer les données")
 print(df[df["Âge"] > 30])
 
-# Trier les données selon une colonne
+# Trier les données selon une colonne en décroissant
 print("Trier les données")
 print(df.sort_values(by="Âge", ascending=False))
 
